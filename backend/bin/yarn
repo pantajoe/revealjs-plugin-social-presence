@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+$(dirname "$0")/exec yarn "$@"
+# output green text
+echo -e "\n\033[0;32m✅ Packages successfully installed in docker container. Now attempting to install locally...\033[0m\n"
+yarn install

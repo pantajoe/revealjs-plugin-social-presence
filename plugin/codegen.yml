@@ -1,0 +1,30 @@
+---
+schema:
+  - ../backend/schema.gql
+documents: './src/**/*.{graphql,gql}'
+generates:
+  src/graphql/__generated__/schema.json:
+    plugins:
+      - introspection
+    config:
+      minify: true
+  src/graphql/__generated__/operations.ts:
+    config:
+      maybeValue: T | undefined
+      inputMaybeValue: T | null | undefined
+      arrayInputCoercion: false
+      withHooks: true
+      withComponent: false
+      allowEnumStringTypes: true
+      strictScalars: true
+      dedupeFragments: true
+      nonOptionalTypename: true
+      scalars:
+        DateTime: Date
+        JsonObject: Record<string, any>
+        Json: any
+        Upload: File
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql

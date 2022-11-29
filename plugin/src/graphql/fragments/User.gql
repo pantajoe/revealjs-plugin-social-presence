@@ -1,0 +1,10 @@
+fragment User on User {
+  id
+  email
+  name
+  bio
+  avatarUrl
+  profileColor
+  isInstructor
+  isStudent
+}

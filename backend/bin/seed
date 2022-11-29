@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Somewhat inspired by https://github.com/gunpowderlabs/buildpack-ruby-rake-deploy-tasks/blob/master/bin/compile
+
+set -e            # fail fast
+set -o pipefail   # don't ignore exit codes when piping output
+
+echo ""
+echo "+-----------------------------+"
+echo "|                             |"
+echo "|      Running seeder ...     |"
+echo "|                             |"
+echo "+-----------------------------+"
+
+if [ -z "$1" ]; then
+  echo "Seeder class has not been set or is empty."
+  echo "If set, it should be the class of your seeder, e.g., 'YourSeeder'."
+else
+  task="yarn mikro-orm seeder:run --class=$1"
+  echo "==> $task"
+  echo ""
+  $task || {
+    echo "==> \"$task\" failed - exiting"
+    exit 1
+  }
+  echo "==> \"$task\" succeeded"
+  echo ""
+  echo ""
+  echo "+-----------------------------+"
+  echo "|                             |"
+  echo "|     Seeding succeeded.      |"
+  echo "|                             |"
+  echo "+-----------------------------+"
+fi

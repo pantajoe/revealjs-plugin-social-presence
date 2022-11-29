@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+export SECRET_KEY_BASE=${SECRET_KEY_BASE:-$(pwgen -s 32)}
+
+env DATABASE_URL=postgres://postgres:postgres@localhost:15432/social_presence_development yarn mikro-orm "$@"

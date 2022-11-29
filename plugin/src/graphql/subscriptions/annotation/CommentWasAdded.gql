@@ -1,0 +1,5 @@
+subscription CommentWasAdded($annotationId: ID) {
+  commentWasAdded(annotationId: $annotationId) {
+    ...Comment
+  }
+}

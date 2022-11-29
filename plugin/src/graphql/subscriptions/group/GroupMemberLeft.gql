@@ -1,0 +1,5 @@
+subscription GroupMemberLeft($id: ID!) {
+  groupMemberLeft(id: $id) {
+    ...User
+  }
+}

@@ -1,0 +1,11 @@
+fragment Annotation on Annotation {
+  id
+  createdAt
+  quote
+  text
+  target
+  author {
+    ...User
+  }
+  commentsCount
+}

@@ -1,0 +1,239 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Annotation {
+  author: User
+  commentsCount: Int!
+  createdAt: DateTime!
+  id: ID!
+  quote: String!
+  target: Json!
+  text: String!
+  updatedAt: DateTime!
+}
+
+input AnnotationCreateInput {
+  quote: String!
+  target: Json!
+  text: String!
+}
+
+type Comment {
+  annotationId: ID!
+  author: User
+  createdAt: DateTime!
+  id: ID!
+  text: String!
+  updatedAt: DateTime!
+}
+
+input CommentCreateInput {
+  annotation: ID!
+  text: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Group {
+  createdAt: DateTime!
+  id: ID!
+  members: [User!]!
+  name: String!
+  token: String!
+  updatedAt: DateTime!
+}
+
+input GroupCreateInput {
+  name: String!
+}
+
+input GroupUpdateInput {
+  name: String
+}
+
+type IdentifierType {
+  id: ID!
+}
+
+"""Any type"""
+scalar Json
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JsonObject
+
+type Lecture {
+  createdAt: DateTime!
+  group: Group
+  id: ID!
+  name: String!
+  owner: User!
+  participants: [User!]!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input LectureCreateInput {
+  name: String!
+  url: String!
+}
+
+input LectureUpdateInput {
+  name: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Message {
+  author: User
+  createdAt: DateTime!
+  groupId: ID
+  id: ID!
+  parent: Message
+  text: String!
+  updatedAt: DateTime!
+}
+
+type MessageConnection {
+  edges: [MessageEdge!]!
+  nodes: [Message!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input MessageCreateInput {
+  group: ID
+  parentMessage: ID
+  text: String!
+}
+
+type MessageEdge {
+  cursor: String!
+  node: Message!
+}
+
+type Mutation {
+  createAnnotation(input: AnnotationCreateInput!): Annotation!
+  createComment(input: CommentCreateInput!): Comment!
+  createGroup(input: GroupCreateInput!): Group!
+  createLecture(input: LectureCreateInput!): Lecture!
+  deleteAnnotation(id: ID!): SuccessType!
+  deleteLecture: SuccessType!
+  deleteProfile: SuccessType!
+  joinGroup(token: String!): Group!
+  joinLecture(lectureId: ID!, url: String!): Lecture!
+  kickParticipant(id: ID!): SuccessType!
+  leaveGroup(id: ID!): Group!
+  leaveLecture: SuccessType!
+  login(input: LoginInput!): Token!
+  logout: SuccessType!
+  refreshLogin: Token!
+  register(input: RegisterInput!): User!
+  sendMessage(input: MessageCreateInput!): Message!
+  updateGroup(id: ID!, input: GroupUpdateInput!): Group!
+  updateLecture(input: LectureUpdateInput!): Lecture!
+  updateProfile(input: ProfileInput!): User!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+input ProfileInput {
+  avatar: Upload
+  bio: String
+  color: String
+  deleteAvatar: Boolean = false
+  name: String
+}
+
+type Query {
+  annotations: [Annotation!]!
+  comments(annotationId: ID!): [Comment!]!
+  group: Group!
+  groupMembers(id: ID!): [User!]!
+  lecture: Lecture!
+  me: User!
+  messages(
+    """Paginate after opaque cursor"""
+    after: String
+
+    """Paginate before opaque cursor"""
+    before: String
+
+    """Paginate first"""
+    first: Int
+    group: ID = ""
+
+    """Paginate last"""
+    last: Int
+  ): MessageConnection!
+  participants: [User!]!
+}
+
+input RegisterInput {
+  avatar: Upload
+  bio: String
+  color: String!
+  email: String!
+  name: String!
+  password: String!
+}
+
+type Subscription {
+  annotationWasCreated: Annotation!
+  annotationWasRemoved: IdentifierType!
+  commentWasAdded(annotationId: ID): Comment!
+  groupMemberJoined(id: ID!): User!
+  groupMemberLeft(id: ID!): User!
+  groupWasUpdated(id: ID!): Group!
+  lectureWasUpdated(ids: [ID!]): Lecture!
+  messageWasSent(groupId: ID): Message!
+  participantJoined: User!
+  participantLeft: User!
+  userWasRemoved: IdentifierType!
+  userWasUpdated: User!
+}
+
+type SuccessType {
+  success: Boolean!
+}
+
+type Token {
+  accessToken: String!
+  accessTokenExpiresAt: DateTime!
+  user: User!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  avatarUrl: String
+  bio: String!
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  isInstructor: Boolean!
+  isStudent: Boolean!
+  name: String!
+  profileColor: String!
+  role: UserRole!
+  updatedAt: DateTime!
+}
+
+enum UserRole {
+  Instructor
+  Student
+}

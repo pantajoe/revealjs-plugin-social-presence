@@ -1,0 +1,5 @@
+query Group {
+  group {
+    ...Group
+  }
+}

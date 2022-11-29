@@ -1,0 +1,14 @@
+fragment Message on Message {
+  id
+  createdAt
+  updatedAt
+  text
+  author {
+    ...User
+  }
+  parent {
+    id
+    text
+  }
+  groupId
+}

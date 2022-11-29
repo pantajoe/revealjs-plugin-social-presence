@@ -1,0 +1,5 @@
+mutation KickParticipant($userId: ID!) {
+  kickParticipant(id: $userId) {
+    success
+  }
+}

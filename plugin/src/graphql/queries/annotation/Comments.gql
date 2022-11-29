@@ -1,0 +1,5 @@
+query Comments($annotationId: ID!) {
+  comments(annotationId: $annotationId) {
+    ...Comment
+  }
+}

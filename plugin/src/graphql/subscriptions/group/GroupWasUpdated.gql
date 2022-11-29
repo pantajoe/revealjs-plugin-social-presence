@@ -1,0 +1,5 @@
+subscription GroupWasUpdated($id: ID!) {
+  groupWasUpdated(id: $id) {
+    ...Group
+  }
+}

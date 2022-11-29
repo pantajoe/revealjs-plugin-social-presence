@@ -1,0 +1,71 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.minio
+      - /usr/src/app/uploads
+      - /usr/src/app/tmp
+    ports:
+      - 4000:5000 # HTTP and GraphQL WebSocket
+      - 8080:8080 # Socket.io WebSocket
+      - 9229:9229 # Debugger
+    command: yarn start:debug
+    env_file:
+      - .env
+      - .env.local
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:13.4
+    environment:
+      POSTGRES_DB: social_presence_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 15432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.2.6
+    command: redis-server --requirepass redis
+    ports:
+      - 16379:6379
+
+  minio:
+    image: minio/minio:RELEASE.2021-10-13T00-23-17Z
+    volumes:
+      - ./.minio:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio-secret
+      MINIO_REGION_NAME: eu-central-1
+    command: server --console-address :9001 /data
+    restart: unless-stopped
+
+  createbuckets:
+    image: minio/mc:RELEASE.2021-10-07T04-19-58Z
+    depends_on:
+      - minio
+    entrypoint: >
+      sh -c "
+        sleep 3;
+        mc config host add s3 http://minio:9000 minio minio-secret;
+        mc mb -p s3/content;
+        mc policy set public s3/content;
+        exit 0;
+      "
+
+volumes:
+  pgdata:

@@ -1,0 +1,5 @@
+subscription GroupMemberJoined($id: ID!) {
+  groupMemberJoined(id: $id) {
+    ...User
+  }
+}

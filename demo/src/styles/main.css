@@ -1,0 +1,11 @@
+#toc-progress-footer {
+  display: block !important;
+  z-index: 2 !important;
+  position: absolute !important;
+  width: 90% !important;
+  box-sizing: content-box;
+}
+
+[id^=slickQuiz] {
+  font-size: smaller;
+}

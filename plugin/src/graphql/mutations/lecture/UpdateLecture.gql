@@ -1,0 +1,5 @@
+mutation UpdateLecture($name: String!) {
+  updateLecture(input: { name: $name }) {
+    ...Lecture
+  }
+}

@@ -1,0 +1,2 @@
+export const USER_WAS_UPDATED = 'USER_WAS_UPDATED'
+export const USER_WAS_REMOVED = 'USER_WAS_REMOVED'

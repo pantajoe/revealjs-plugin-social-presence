@@ -1,0 +1,26 @@
+query Messages(
+  $groupId: ID
+  $before: String
+  $after: String
+  $last: Int
+  $first: Int
+) {
+  messages(
+    group: $groupId
+    before: $before
+    after: $after
+    last: $last
+    first: $first
+  ) {
+    totalCount
+    pageInfo {
+      startCursor
+      hasNextPage
+      hasPreviousPage
+      endCursor
+    }
+    nodes {
+      ...Message
+    }
+  }
+}

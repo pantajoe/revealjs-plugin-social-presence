@@ -1,0 +1,5 @@
+mutation CreateComment($annotationId: ID!, $text: String!) {
+  createComment(input: {annotation: $annotationId, text: $text}) {
+    ...Comment
+  }
+}

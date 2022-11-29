@@ -1,0 +1,7 @@
+mutation RefreshLogin {
+  refreshLogin {
+    __typename
+    accessToken
+    accessTokenExpiresAt
+  }
+}

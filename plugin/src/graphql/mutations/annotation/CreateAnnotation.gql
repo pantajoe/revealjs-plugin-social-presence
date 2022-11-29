@@ -1,0 +1,5 @@
+mutation CreateAnnotation($quote: String!, $text: String!, $target: Json!) {
+  createAnnotation(input: { quote: $quote, text: $text, target: $target }) {
+    ...Annotation
+  }
+}

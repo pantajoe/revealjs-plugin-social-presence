@@ -1,0 +1,5 @@
+subscription UserWasRemoved {
+  userWasRemoved {
+    id
+  }
+}

@@ -1,0 +1,5 @@
+mutation LeaveLecture {
+  leaveLecture {
+    success
+  }
+}

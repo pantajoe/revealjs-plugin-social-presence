@@ -1,0 +1,5 @@
+subscription ParticipantJoined {
+  participantJoined {
+    ...User
+  }
+}

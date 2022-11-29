@@ -1,0 +1,5 @@
+mutation SendMessage($text: String!, $parentMessage: ID, $groupId: ID) {
+  sendMessage(input: { text: $text, parentMessage: $parentMessage, group: $groupId }) {
+    ...Message
+  }
+}

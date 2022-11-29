@@ -1,0 +1,1 @@
+export const PUB_SUB_KEY = 'SUBSCRIPTION_PUB_SUB'

@@ -1,0 +1,5 @@
+mutation JoinGroup($token: String!) {
+  joinGroup(token: $token) {
+    ...Group
+  }
+}

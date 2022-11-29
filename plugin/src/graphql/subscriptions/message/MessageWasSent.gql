@@ -1,0 +1,5 @@
+subscription MessageWasSent($groupId: ID) {
+  messageWasSent(groupId: $groupId) {
+    ...Message
+  }
+}

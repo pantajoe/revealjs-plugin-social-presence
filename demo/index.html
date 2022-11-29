@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="reveal-full-page">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+    <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/white.css">
+    <link rel="stylesheet" href="node_modules/revealjs-plugin-social-presence/dist/index.min.css">
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://www.unpkg.com/socket.io-client@4.5.4/dist/socket.io.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reveal.js Social Presence Plugin</title>
+  </head>
+  <body>
+    <!-- entrypoint for social presence plugin -->
+    <div id="social-presence"></div>
+
+    <!-- reveal.js slides -->
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="no-toc-progress">
+          <h1 class="no-toc-progress">reveal.js Plugin "Social Presence"</h1>
+
+          <aside class="notes">
+            <ul>
+              <li>To toggle these notes, press <code>v</code></li>
+              <li>Press <code>?</code> for key bindings (in particular, <code>o</code>, <code>n</code>, <code>p</code>, <code>Ctrl-Shift-f</code>)</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ## 1. What is tracked?
+
+            - slide transitions
+            - dwell times (per slide and total)
+            - clicking on links (pointing to *internal* slides or *external* webpages)
+            - playing and pausing with media (audio recordings and videos)
+            - performing quizzes
+            - with timestamps!
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ## 2. Slide transitions
+
+            - when navigating to another slide, the transition is tracked
+            - details about origin and destination slide are saved in the create slide transition event
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            ## 3. Dwell times
+
+            - dwell times per slide are tracked when a slide transition takes place
+            - the slide timer is read for the previous slide and is restarted for the new and current slide
+          </textarea>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ## 4. Links
+  
+              - if a link is clicked, the click event is added to the event timeline
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### 4.1. Internal links
+
+              - internal links pointing to other slides can be tracked
+              - here is an [internal link](#/4/2) that is tracked
+            </textarea>
+          </section>
+
+          <section data-markdown>
+            <textarea data-template>
+              ### 4.2. External links
+
+              - not only internal links (pointing to other slides in the presentation) are tracked
+              - external links like <a href="https://www.solaresearch.org/about/what-is-learning-analytics/" target="_blank">this</a> are too!
+            </textarea>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ## 5. Media
+  
+              - media can be embedded in such presentations
+              - not only static images, but also videos and audio recordings
+              - they can assist the understanding of the students
+            </textarea>
+          </section>
+
+          <section data-markdown data-audio-src="audio/audio.ogg">
+            <textarea data-template>
+              ### 5.1. Audio recordings
+
+              - at the bottom, you can see an embedded audio file
+              - play and pause it as you like
+              - both actions will be tracked at any time!
+            </textarea>
+          </section>
+
+          <section>
+            <h3 id="52-videos">5.2. Videos</h3>
+
+            <ul>
+              <li>here is an embedded video</li>
+              <li>playing and pausing it will be tracked respectively</li>
+            </ul>
+
+            <video  type="video/mp4"
+                    id="videoplayer-5.2"
+                    controls
+                    src="video/video.mp4"
+                    width="720"
+                    height="480">
+            </video>
+          </section>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <textarea data-template>
+              ## 6. Quizzes
+  
+              - with the help of the <a href="https://gitlab.com/schaepermeier/reveal.js-quiz" target="_blank">reveal.js-quiz</a> Plug-in, quizzes can be embedded in reveal.js presentations!
+              - on the next slide, there is a quiz you can do (copied from the <a href="https://github.com/jewlofthelotus/SlickQuiz/blob/7ee4c24ee55bdf50bd481412ad08c74d43c2d7a4/js/slickQuiz-config.js" target="_blank">slickQuiz repository</a>)
+              - starting and completing it will be tracked (including your score, so you might as well try!)
+            </textarea>
+          </section>
+
+          <section>
+            <h3>6.1 A neat quiz</h3>
+            <script data-quiz="sampleQuiz" type="text/javascript">
+              var sampleQuiz = {
+                "info": {
+                  "name":    "Test Your Knowledge!!",
+                  "main":    "<p>Think you're smart enough to be on Jeopardy? Find out with this super crazy knowledge quiz!</p>",
+                  "level1":  "Jeopardy Ready",
+                  "level2":  "Jeopardy Contender",
+                  "level3":  "Jeopardy Amateur",
+                  "level4":  "Jeopardy Newb",
+                  "level5":  "Stay in school, kid..." // no comma here
+                },
+                "questions": [
+                  { // Question 1 - Multiple Choice, Single True Answer
+                    "q": "What number is the letter A in the English alphabet?",
+                    "a": [
+                      {"option": "8",      "correct": false},
+                      {"option": "14",     "correct": false},
+                      {"option": "1",      "correct": true},
+                      {"option": "23",     "correct": false} // no comma here
+                    ],
+                    "correct": "<p><span>That's right!</span> The letter A is the first letter in the alphabet!</p>",
+                    "incorrect": "<p><span>Uhh no.</span> It's the first letter of the alphabet. Did you actually <em>go</em> to kindergarden?</p>" // no comma here
+                  },
+                  { // Question 2 - Multiple Choice, Multiple True Answers, Select Any
+                    "q": "Which of the following best represents your preferred breakfast?",
+                    "a": [
+                      {"option": "Bacon and eggs",               "correct": false},
+                      {"option": "Fruit, oatmeal, and yogurt",   "correct": true},
+                      {"option": "Leftover pizza",               "correct": false},
+                      {"option": "Eggs, fruit, toast, and milk", "correct": true} // no comma here
+                    ],
+                    "select_any": true,
+                    "correct": "<p><span>Nice!</span> Your cholestoral level is probably doing alright.</p>",
+                    "incorrect": "<p><span>Hmmm.</span> You might want to reconsider your options.</p>" // no comma here
+                  },
+                  { // Question 3 - Multiple Choice, Multiple True Answers, Select All
+                    "q": "Where are you right now? Select ALL that apply.",
+                    "a": [
+                      {"option": "Planet Earth",           "correct": true},
+                      {"option": "Pluto",                  "correct": false},
+                      {"option": "At a computing device",  "correct": true},
+                      {"option": "The Milky Way",          "correct": true} // no comma here
+                    ],
+                    "correct": "<p><span>Brilliant!</span> You're seriously a genius, (wo)man.</p>",
+                    "incorrect": "<p><span>Not Quite.</span> You're actually on Planet Earth, in The Milky Way, At a computer. But nice try.</p>" // no comma here
+                  },
+                  { // Question 4
+                    "q": "How many inches of rain does Michigan get on average per year?",
+                    "a": [
+                      {"option": "149",    "correct": false},
+                      {"option": "32",     "correct": true},
+                      {"option": "3",      "correct": false},
+                      {"option": "1291",   "correct": false} // no comma here
+                    ],
+                    "correct": "<p><span>Holy bananas!</span> I didn't actually expect you to know that! Correct!</p>",
+                    "incorrect": "<p><span>Fail.</span> Sorry. You lose. It actually rains approximately 32 inches a year in Michigan.</p>" // no comma here
+                  },
+                  { // Question 5
+                    "q": "Is Earth bigger than a basketball?",
+                    "a": [
+                      {"option": "Yes",    "correct": true},
+                      {"option": "No",     "correct": false} // no comma here
+                    ],
+                    "correct": "<p><span>Good Job!</span> You must be very observant!</p>",
+                    "incorrect": "<p><span>ERRRR!</span> What planet Earth are <em>you</em> living on?!?</p>" // no comma here
+                  } // no comma here
+                ]
+              };
+            </script>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="node_modules/reveal.js/dist/reveal.js"></script>
+    <script src="node_modules/reveal.js/plugin/notes/notes.js"></script>
+    <script src="node_modules/reveal.js/plugin/search/search.js"></script>
+    <script src="node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+    <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+    <script src="node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="node_modules/reveal.js/plugin/math/math.js"></script>
+    <script src="plugin/audio-slideshow/index.js"></script>
+    <script src="node_modules/revealjs-plugin-social-presence/dist/index.js"></script>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

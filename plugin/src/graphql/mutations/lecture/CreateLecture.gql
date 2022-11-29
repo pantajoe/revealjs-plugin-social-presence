@@ -1,0 +1,5 @@
+mutation CreateLecture($name: String!, $url: String!) {
+  createLecture(input: { name: $name, url: $url }) {
+    ...Lecture
+  }
+}

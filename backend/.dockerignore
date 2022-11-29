@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+npm-debug.log.*
+.DS_Store
+coverage
+dist
+
+.git
+.github
+.vscode
+.minio
+.husky
+docker-compose.yml
+README.md
+/lambda
+ssh-proxy

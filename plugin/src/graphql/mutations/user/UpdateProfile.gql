@@ -1,0 +1,19 @@
+mutation UpdateProfile(
+  $name: String
+  $bio: String
+  $color: String
+  $avatar: Upload
+  $deleteAvatar: Boolean
+) {
+  updateProfile(
+    input: {
+      name: $name
+      bio: $bio
+      color: $color
+      avatar: $avatar
+      deleteAvatar: $deleteAvatar
+    }
+  ) {
+    ...User
+  }
+}

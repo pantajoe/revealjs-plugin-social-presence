@@ -1,0 +1,10 @@
+fragment Lecture on Lecture {
+  id
+  createdAt
+  name
+  url
+  owner {
+    id
+    name
+  }
+}

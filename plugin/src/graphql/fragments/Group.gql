@@ -1,0 +1,6 @@
+fragment Group on Group {
+  id
+  createdAt
+  name
+  token
+}

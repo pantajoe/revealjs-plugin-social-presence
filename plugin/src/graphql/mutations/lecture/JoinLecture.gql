@@ -1,0 +1,5 @@
+mutation JoinLecture($id: ID!, $url: String!) {
+  joinLecture(lectureId: $id, url: $url) {
+    ...Lecture
+  }
+}
