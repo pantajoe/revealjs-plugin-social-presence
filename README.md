@@ -20,10 +20,17 @@ Its features include:
 You can see a demo of this plugin in action by cloning this repository and running some commands.
 You need node.js, yarn, and docker (with compose) installed.
 
+If you have [asdf](https://asdf-vm.com/) installed, you can run `asdf install` in the `backend` and in the `demo` folder to install the correct node.js versions.
+If not, install 16.15.1 for the backend folder, and 16.16.0 for the demo folder.
+Don't forget to run `npm -g install yarn` to install yarn globally.
+
+```bash
+
 First, run the backend:
 
 ```bash
 cd backend
+yarn install
 docker-compose up --build
 
 # run this only once to prepare the database as soon as everyhting is up and running
