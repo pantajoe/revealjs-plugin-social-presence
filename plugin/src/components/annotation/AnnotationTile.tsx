@@ -138,7 +138,7 @@ export default function AnnotationTile({
               {annotation.createdAt.toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}
             </span>
           </span>
-          {authored && (
+          {authored && replyCount === 0 && (
             <Dropdown
               position="top-end"
               button={
