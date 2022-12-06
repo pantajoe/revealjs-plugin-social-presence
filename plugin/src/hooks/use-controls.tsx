@@ -17,9 +17,9 @@ import {
   WrenchScrewdriverIcon as WrenchScrewdriverActiveIcon,
 } from '@heroicons/react/20/solid'
 import type { ComponentProps, PropsWithChildren } from 'react'
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import { useLocalStorageValue } from '@react-hookz/web'
+import { createContext, useCallback, useContext, useState } from 'react'
 import { usePluginConfig } from './use-plugin-config'
+import { useBooleanStorage } from './use-storage'
 
 export type AppViewId = 'chat' | 'group' | 'annotation' | 'participants' | 'profile' | 'settings' | 'lecture-info'
 export interface AppView {
@@ -106,34 +106,10 @@ const ControlsContext = createContext<ControlsContextValue | null>(null)
 
 export const ControlsProvider = ({ children }: PropsWithChildren) => {
   const [view, setView] = useState<AppView | null>(null)
-  const zenMode = useLocalStorageValue('zen_mode', {
-    initializeWithValue: true,
-    defaultValue: false,
-    parse: (str) => str === 'true',
-    stringify: (value) => (typeof value === 'boolean' ? value.toString() : null),
-  })
-  const zenModeValue = useMemo(() => zenMode.value, [zenMode.value])
-  const showCursors = useLocalStorageValue('show_cursors', {
-    initializeWithValue: true,
-    defaultValue: true,
-    parse: (str) => str === 'true',
-    stringify: (value) => (typeof value === 'boolean' ? value.toString() : null),
-  })
-  const showCursorsValue = useMemo(() => showCursors.value, [showCursors.value])
-  const showOnlyGroupCursors = useLocalStorageValue('show_group_cursors_only', {
-    initializeWithValue: true,
-    defaultValue: false,
-    parse: (str) => str === 'true',
-    stringify: (value) => (typeof value === 'boolean' ? value.toString() : null),
-  })
-  const showOnlyGroupCursorsValue = useMemo(() => showOnlyGroupCursors.value, [showOnlyGroupCursors.value])
-  const showAnnotationHighlights = useLocalStorageValue('show_annotation_highlights', {
-    initializeWithValue: true,
-    defaultValue: true,
-    parse: (str) => str === 'true',
-    stringify: (value) => (typeof value === 'boolean' ? value.toString() : null),
-  })
-  const showAnnotationHighlightsValue = useMemo(() => showAnnotationHighlights.value, [showAnnotationHighlights.value])
+  const [zenMode, setZenMode] = useBooleanStorage('zen_mode', false)
+  const [showCursors, setShowCursors] = useBooleanStorage('show_cursors', true)
+  const [showOnlyGroupCursors, setShowOnlyGroupCursors] = useBooleanStorage('show_group_cursors_only', false)
+  const [showAnnotationHighlights, setShowAnnotationHighlights] = useBooleanStorage('show_annotation_highlights', true)
 
   const switchView: ControlsContextActions['switchView'] = useCallback((viewOrId, toggle = true) => {
     const view = typeof viewOrId === 'string' ? AppViews.find((v) => v.id === viewOrId)! : viewOrId
@@ -144,16 +120,16 @@ export const ControlsProvider = ({ children }: PropsWithChildren) => {
     (setting) => {
       switch (setting) {
         case 'zenMode':
-          zenMode.set((prev) => !prev)
+          setZenMode((prev) => !prev)
           break
         case 'showCursors':
-          showCursors.set((prev) => !prev)
+          setShowCursors((prev) => !prev)
           break
         case 'showOnlyGroupCursors':
-          showOnlyGroupCursors.set((prev) => !prev)
+          setShowOnlyGroupCursors((prev) => !prev)
           break
         case 'showAnnotationHighlights':
-          showAnnotationHighlights.set((prev) => !prev)
+          setShowAnnotationHighlights((prev) => !prev)
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,10 +141,10 @@ export const ControlsProvider = ({ children }: PropsWithChildren) => {
       value={[
         {
           view,
-          zenMode: zenModeValue,
-          showCursors: showCursorsValue,
-          showOnlyGroupCursors: showOnlyGroupCursorsValue,
-          showAnnotationHighlights: showAnnotationHighlightsValue,
+          zenMode,
+          showCursors,
+          showOnlyGroupCursors,
+          showAnnotationHighlights,
         },
         { switchView, toggle },
       ]}
