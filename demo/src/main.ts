@@ -20,7 +20,7 @@ Reveal.initialize({
   showNotes: false,
   coursemod: {
     enabled: true,
-    shown: true,
+    shown: false,
   },
   audioStartAtFragment: false,
   audio: {
@@ -32,6 +32,7 @@ Reveal.initialize({
     playerOpacity: 0.8,
     playerStyle: 'position: fixed; bottom: 9.5vh; left: 0%; width: 30%; height:30px; z-index: 5;',
   },
+  // The "Social Presence" plugin configuration
   socialPresence: {
     apiUrl: 'http://localhost:4000',
     socketUrl: 'http://localhost:8080',
@@ -54,6 +55,7 @@ Reveal.initialize({
       },
     },
     { src: './plugin/coursemod/coursemod.js', async: true },
+    // Initialize the "Social Presence" plugin last
     {
       src: './node_modules/revealjs-plugin-social-presence/dist/index.js',
       async: true,
