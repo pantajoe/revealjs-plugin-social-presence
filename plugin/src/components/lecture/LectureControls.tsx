@@ -1,4 +1,5 @@
 import { ArrowRightOnRectangleIcon, PlusIcon } from '@heroicons/react/24/outline'
+import type { PropsWithChildren } from 'react'
 import { useState } from 'react'
 import CircularButton from '../generic/CircularButton'
 import CreateLectureModal from './CreateLectureModal'
@@ -6,7 +7,7 @@ import JoinLectureModal from './JoinLectureModal'
 import { useAuth } from '~/hooks/use-auth'
 import { useControls } from '~/hooks/use-controls'
 
-export default function LectureControls() {
+export default function LectureControls({ children }: PropsWithChildren) {
   const [, { switchView }] = useControls()
   const [{ user }] = useAuth()
 
@@ -14,7 +15,7 @@ export default function LectureControls() {
   const [showJoinLectureModal, setShowJoinLectureModal] = useState(false)
 
   return (
-    <div className="flex space-x-4 items-center">
+    <div className="flex space-x-4 items-center mb-4 flex-shrink-0">
       {user.isInstructor && (
         <>
           <CircularButton
@@ -50,6 +51,8 @@ export default function LectureControls() {
         onClose={setShowJoinLectureModal}
         onSubmit={() => switchView('lecture-info')}
       />
+
+      {children}
     </div>
   )
 }

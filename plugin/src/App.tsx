@@ -1,4 +1,5 @@
-import { UserIcon } from '@heroicons/react/20/solid'
+import { UserCircleIcon as UserCircleActiveIcon, UserIcon } from '@heroicons/react/20/solid'
+import { UserCircleIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import { useState } from 'react'
 import AnnotationEnvironment from './components/annotation/AnnotationEnvironment'
@@ -16,7 +17,7 @@ import { usePluginConfig } from './hooks/use-plugin-config'
 
 export default function App() {
   const [{ isLoggedIn }] = useAuth()
-  const [{ view, showCursors, zenMode, showOnlyGroupCursors, showAnnotationHighlights }] = useControls()
+  const [{ view, showCursors, zenMode, showOnlyGroupCursors, showAnnotationHighlights }, { switchView }] = useControls()
   const config = usePluginConfig()
   const [{ lecture }] = useLecture()
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -35,7 +36,20 @@ export default function App() {
             </div>
           </>
         ) : (
-          <LectureControls />
+          <div className="flex flex-col h-full">
+            <LectureControls>
+              <CircularButton
+                color="transparent"
+                size="md"
+                icon={view?.id === 'profile' ? UserCircleActiveIcon : UserCircleIcon}
+                title="Profile"
+                onClick={() => switchView('profile')}
+              >
+                <span className="sr-only">Profile</span>
+              </CircularButton>
+            </LectureControls>
+            <View />
+          </div>
         )
       ) : (
         <>
