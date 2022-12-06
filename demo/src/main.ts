@@ -57,7 +57,7 @@ Reveal.initialize({
     { src: './plugin/coursemod/coursemod.js', async: true },
     // Initialize the "Social Presence" plugin last
     {
-      src: './node_modules/revealjs-plugin-social-presence/dist/index.js',
+      src: './node_modules/revealjs-plugin-social-presence/dist/index.min.js',
       async: true,
       callback: () => {
         RevealSocialPresence.install();
