@@ -86,6 +86,7 @@ export default function Controls() {
                 switchView(view)
                 if (view.id === 'chat') setUnreadMessages(0)
                 if (view.id === 'group') setUnreadGroupMessages(0)
+                if (view.id === 'annotation') setUnreadAnnotations(0)
               }}
             >
               <span className="sr-only">{view.name}</span>

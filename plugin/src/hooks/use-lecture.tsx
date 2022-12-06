@@ -47,7 +47,6 @@ const LectureContext = createContext<LectureContextValue | null>(null)
 
 export const LectureProvider = ({ children }: PropsWithChildren) => {
   const [{ isLoggedIn }] = useAuth()
-  const query = new URLSearchParams(window.location.search)
 
   const recentLectures = useLocalStorageValue<RecentLectureConfig, RecentLectureConfig, true>(
     RecentLecturesStorageKey,
@@ -71,11 +70,10 @@ export const LectureProvider = ({ children }: PropsWithChildren) => {
       delete copy[window.location.pathname]
       return copy
     })
-    if (query.has('lectureId')) window.location.search = ''
+    if (window.location.search.includes('lectureId')) window.location.search = ''
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query])
+  }, [])
 
-  const [lectureId] = useState(() => query.get('lectureId') || recentLectures.value[window.location.pathname]?.id)
   const { resetClient } = useClient()
 
   const [lecture, setLecture] = useState<Lecture | null>(null)
@@ -138,11 +136,13 @@ export const LectureProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (isLoggedIn) {
+      const lectureId =
+        new URLSearchParams(window.location.search).get('lectureId') ||
+        recentLectures.value?.[window.location.pathname]?.id
       if (lectureId) {
         joinLecture(lectureId).then((result) => {
           if (!result) {
             purgeLecture()
-            window.location.search = ''
           }
         })
       }
@@ -150,7 +150,7 @@ export const LectureProvider = ({ children }: PropsWithChildren) => {
       setLecture(null)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn, lectureId])
+  }, [isLoggedIn])
 
   const [participantsQuery] = useParticipantsQuery({ pause: !lecture })
   const participants = useMemo(() => participantsQuery.data?.participants ?? [], [participantsQuery])

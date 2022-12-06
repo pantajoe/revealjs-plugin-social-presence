@@ -1,5 +1,6 @@
 import type { Cache, UpdateResolver, UpdatesConfig } from '@urql/exchange-graphcache'
 import type {
+  AnnotationFragment,
   CommentFragment,
   CommentWasAddedSubscription,
   CommentWasAddedSubscriptionVariables,
@@ -8,7 +9,7 @@ import type {
   CreateCommentMutation,
   CreateCommentMutationVariables,
 } from '~/graphql'
-import { CommentFragmentDoc, CommentsDocument } from '~/graphql'
+import { AnnotationFragmentDoc, CommentFragmentDoc, CommentsDocument } from '~/graphql'
 
 const addCommentToCache = (cache: Cache, comment: CommentFragment | null | undefined) => {
   if (!comment) return
@@ -27,6 +28,17 @@ const addCommentToCache = (cache: Cache, comment: CommentFragment | null | undef
       }
     },
   )
+
+  const annotation = cache.readFragment<AnnotationFragment>(AnnotationFragmentDoc, {
+    __typename: 'Annotation',
+    id: comment.annotationId,
+  })
+  if (!annotation) return
+
+  cache.writeFragment(AnnotationFragmentDoc, {
+    ...annotation,
+    commentsCount: annotation.commentsCount + 1,
+  })
 }
 
 const createComment: UpdateResolver<CreateCommentMutation, CreateCommentMutationVariables> = (result, args, cache) => {

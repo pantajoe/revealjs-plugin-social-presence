@@ -36,9 +36,15 @@ export interface AnnotationTileProps {
   annotation: SocialAnnotation
   onClick?: (annotation: SocialAnnotation) => any
   onRemove?: () => any
+  replyCount?: number
 }
 
-export default function AnnotationTile({ annotation, onClick, ...props }: AnnotationTileProps) {
+export default function AnnotationTile({
+  annotation,
+  onClick,
+  replyCount = annotation.commentsCount,
+  ...props
+}: AnnotationTileProps) {
   const [{ user }] = useAuth()
   const [{ isOnline }] = usePresence()
   const { online: isBrowserOnline } = useNetworkState()
@@ -170,7 +176,7 @@ export default function AnnotationTile({ annotation, onClick, ...props }: Annota
         </div>
 
         <div className="text-xs text-gray-500">
-          {annotation.commentsCount} comment{annotation.commentsCount === 1 ? '' : 's'}
+          {replyCount} comment{replyCount === 1 ? '' : 's'}
         </div>
       </div>
     </div>

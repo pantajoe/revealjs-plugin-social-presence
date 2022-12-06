@@ -2,7 +2,6 @@ import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 import { useEffect, useState } from 'react'
 import AnnotationComments from '~/components/annotation/AnnotationComments'
 import AnnotationList from '~/components/annotation/AnnotationList'
-import AnnotationTile from '~/components/annotation/AnnotationTile'
 import type { SocialAnnotation } from '~/graphql'
 import { useAnnotations } from '~/hooks/use-annotations'
 
@@ -31,12 +30,7 @@ export default function AnnotationView() {
           <span>Back</span>
         </button>
       </div>
-      <AnnotationTile
-        annotation={selectedAnnotation}
-        onClick={setSelectedAnnotation}
-        onRemove={() => setSelectedAnnotation(null)}
-      />
-      <AnnotationComments annotation={selectedAnnotation} />
+      <AnnotationComments annotation={selectedAnnotation} onRemove={setSelectedAnnotation} />
     </div>
   )
 }

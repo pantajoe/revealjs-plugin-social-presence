@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: Props) => {
   const { auth, setAuth, removeAuth } = useCredentials()
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const [loading, setLoading] = useState(false)
-  const [, setInitialLoading] = useState(true)
+  const [initialLoading, setInitialLoading] = useState(true)
 
   const { client, resetClient } = useClient()
 
@@ -103,7 +103,9 @@ export const AuthProvider = ({ children }: Props) => {
   }, [client, removeAuth])
 
   useEffect(() => {
-    fetchUser().then(() => setInitialLoading(false))
+    fetchUser()
+      .then(() => setInitialLoading(false))
+      .finally(() => setInitialLoading(false))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -124,7 +126,7 @@ export const AuthProvider = ({ children }: Props) => {
     [user, isLoggedIn, loading, login, fetchUser, logout],
   )
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={value}>{initialLoading ? null : children}</AuthContext.Provider>
 }
 
 export const useAuth = () => {
