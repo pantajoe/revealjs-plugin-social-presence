@@ -77,7 +77,7 @@ Then, add third-party dependencies to your page's `head` tag:
 <!-- ReactDOM -->
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <!-- Socket.IO -->
-<script crossorigin src="https://www.unpkg.com/socket.io-client@4.5.4/dist/socket.io.min.js"></script>
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
 ```
 
 Add the stylesheet belonging to this plugin:
