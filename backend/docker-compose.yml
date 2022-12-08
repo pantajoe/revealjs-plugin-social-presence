@@ -18,7 +18,6 @@ services:
     command: yarn start:debug
     env_file:
       - .env
-      - .env.local
     depends_on:
       - db
       - redis
