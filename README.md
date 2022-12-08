@@ -24,8 +24,6 @@ If you have [asdf](https://asdf-vm.com/) installed, you can run `asdf install` i
 If not, install 16.15.1 for the backend folder, and 16.16.0 for the demo folder.
 Don't forget to run `npm -g install yarn` to install yarn globally.
 
-```bash
-
 First, run the backend:
 
 ```bash
