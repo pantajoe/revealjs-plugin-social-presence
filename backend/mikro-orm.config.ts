@@ -8,16 +8,17 @@ const logger = new ConsoleLogger('MikroORM')
 
 export const LECTURE_FILTER_KEY = 'lecture'
 
-const driverOptions = isEnv('production', 'staging')
-  ? {
-      connection: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
+const driverOptions =
+  isEnv('production', 'staging') && process.env.DISABLE_MIKRO_ORM_SSL !== 'true'
+    ? {
+        connection: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
         },
-      },
-    }
-  : {}
+      }
+    : {}
 
 const config = {
   allowGlobalContext: process.env.REPL === 'true' || isEnv('test'),
