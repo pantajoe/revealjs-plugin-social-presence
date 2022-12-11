@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/usr/src/app
       - /usr/src/app/node_modules
+      - /usr/src/app/dist
       - /usr/src/app/.minio
       - /usr/src/app/uploads
       - /usr/src/app/tmp
