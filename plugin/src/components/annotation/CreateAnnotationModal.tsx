@@ -20,6 +20,7 @@ export default function CreateAnnotationModal({ range, ...props }: CreateAnnotat
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -35,6 +36,7 @@ export default function CreateAnnotationModal({ range, ...props }: CreateAnnotat
     const target = describe(document.body, range!)
     await addAnnotation({ text: values.comment, quote: text, target })
     props.onClose(false)
+    reset({ comment: '' })
   })
 
   const form = useRef<HTMLFormElement | null>(null)
