@@ -55,16 +55,21 @@ Your admin panel is accessible at [http://localhost:4000/admin](http://localhost
 The presentation with the plugin is accessible at [http://localhost:3000](http://localhost:3000).
 
 In order to create a virtual room for the presentation, you need to create a user account first.
-Visit the presentation as a guest and click on the button in the top left corner.
-Then register a new account.
+In order to be able to create lectures, you need to have the role `instructor`.
+For this, you need to execute the following command in the `backend/` folder (while your docker compose project is running):
+
+```bash
+bin/cli teachers register -e <email> -n <your_name> -p <password>
+```
+
+The flags `--color` and `--bio` are optional.
+
+**Note that this command will also work in a production environment where your docker compose project is running.**
+
+Normal users can just visit the presentation as a guest and click on the button in the top left corner.
+Then, they can register a new account.
 
 <img src="./assets/login.png" style="zoom: 33%;" />
-
-Afterwards, log in to your admin panel at [http://localhost:4000/admin](http://localhost:4000/admin)
-and login with the credentials `root@example.com` and `secret`.
-Then edit your user account the have the role `instructor` instead of `student`.
-
-<img src="./assets/backend.png" style="zoom: 33%;" />
 
 Reload your presentation page, and play around!
 

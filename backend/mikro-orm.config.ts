@@ -43,7 +43,10 @@ const config = {
     emit: 'ts',
     defaultSeeder: 'DatabaseSeeder',
   },
-  logger: process.env.DISABLE_MIKRO_ORM_LOGS === 'true' ? (_message: string) => {} : logger.debug.bind(logger),
+  logger:
+    process.env.DISABLE_MIKRO_ORM_LOGS === 'true' || process.env.REPL || process.env.CLI
+      ? (_message: string) => {}
+      : logger.debug.bind(logger),
   persistOnCreate: true,
   forceUtcTimezone: true,
   entityRepository: EntityRepository,
