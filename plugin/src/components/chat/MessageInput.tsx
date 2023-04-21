@@ -42,11 +42,19 @@ export default forwardRef<HTMLTextAreaElement, MessageInputProps>(function Messa
     ...props,
   }
 
-  const onKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
-    if (event.key === 'Enter' && event.metaKey) {
-      event.preventDefault()
-      onSend?.()
+  const onKeyPress: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
+    if (event.key === '?') {
+      event.stopPropagation()
     }
+  })
+
+  const onKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
+    if (event.key === 'Enter') {
+      event.stopPropagation()
+      if (event.metaKey) {
+        event.preventDefault()
+        onSend?.()
+      }
   })
 
   const replyToMessage = replyTo ? truncate(replyTo.text, { length: 100 }) : undefined
@@ -86,6 +94,7 @@ export default forwardRef<HTMLTextAreaElement, MessageInputProps>(function Messa
         className="form-textarea overflow-y-auto block w-full py-2 border-0 resize-none focus:ring-0 text-sm"
         style={{ minHeight: '16px', maxHeight: '96px' }}
         onKeyDown={onKeyDown}
+        onKeyPress={onKeyPress}
         onChange={onChange}
       />
     </div>

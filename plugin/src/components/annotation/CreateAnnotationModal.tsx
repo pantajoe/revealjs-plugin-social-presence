@@ -39,9 +39,18 @@ export default function CreateAnnotationModal({ range, ...props }: CreateAnnotat
 
   const form = useRef<HTMLFormElement | null>(null)
   const onKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
-    if (event.key === 'Enter' && event.metaKey) {
-      event.preventDefault()
-      form.current!.submit()
+    if (event.key === 'Enter') {
+      event.stopPropagation()
+      if (event.metaKey) {
+        event.preventDefault()
+        form.current!.submit()
+      }
+    }
+  })
+
+  const onKeyPress: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
+    if (event.key === '?') {
+      event.stopPropagation()
     }
   })
 
@@ -66,6 +75,7 @@ export default function CreateAnnotationModal({ range, ...props }: CreateAnnotat
             {...register('comment', { required: true })}
             error={errors.comment?.message}
             onKeyDown={onKeyDown}
+            onKeyPress={onKeyPress}
           />
 
           <Button type="submit" loading={isSubmitting} className="w-full">
