@@ -1,6 +1,6 @@
 import { extension } from 'mime-types'
 
-export const sanitizeFileName = (fileName: string) => {
+export function sanitizeFileName(fileName: string) {
   if (!fileName) return ''
 
   return fileName
@@ -31,7 +31,7 @@ export type ToFileNameOptions =
       extension?: never
       mimeType: string
     }
-export const toFileName = (name: string, opts: ToFileNameOptions) => {
+export function toFileName(name: string, opts: ToFileNameOptions) {
   const { additions = [], extension: ext, mimeType } = opts
 
   const fileName = sanitizeFileName(name)

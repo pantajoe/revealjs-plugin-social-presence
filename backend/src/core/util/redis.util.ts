@@ -1,7 +1,7 @@
-import { URL } from 'url'
+import { URL } from 'node:url'
 import Redis, { RedisOptions } from 'ioredis'
 
-export const getRedisClientOptions = () => {
+export function getRedisClientOptions() {
   const redisUrl = process.env.REDIS_URL ? new URL(process.env.REDIS_URL) : undefined
 
   return redisUrl
@@ -15,9 +15,9 @@ export const getRedisClientOptions = () => {
     : undefined
 }
 
-export const createRedisClient = (
+export function createRedisClient(
   overrides: Omit<RedisOptions, 'host' | 'port' | 'username' | 'password' | 'tls'> = {},
-) => {
+) {
   const options = getRedisClientOptions() ?? {}
 
   return new Redis({

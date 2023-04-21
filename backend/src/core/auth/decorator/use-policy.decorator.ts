@@ -3,4 +3,6 @@ import { PolicyClass } from '../policy/policy'
 
 export const USE_POLICY_KEY = 'use_policy'
 
-export const UsePolicy = (policy: PolicyClass<any, any>) => SetMetadata(USE_POLICY_KEY, policy)
+export function UsePolicy(policy: PolicyClass<any, any>) {
+  return SetMetadata(USE_POLICY_KEY, policy)
+}

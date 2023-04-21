@@ -78,7 +78,7 @@
     "socket.io": "^4.5.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.32.0",
+    "@antfu/eslint-config-ts": "0.38.4",
     "@nestjs/cli": "^9.1.5",
     "@nestjs/schematics": "^9.0.3",
     "@types/bcrypt": "^5.0.0",
@@ -95,7 +95,7 @@
     "@types/passport": "^1.0.11",
     "@types/passport-jwt": "^3.0.7",
     "@types/uuid": "^9.0.0",
-    "eslint": "^8.28.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.0",

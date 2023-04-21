@@ -1,4 +1,4 @@
-export const parseSafeJson = <T = any>(json: string): T | null => {
+export function parseSafeJson<T = any>(json: string): T | null {
   try {
     return JSON.parse(json) as T
   } catch (e) {
@@ -6,7 +6,7 @@ export const parseSafeJson = <T = any>(json: string): T | null => {
   }
 }
 
-export const parseSafeUrl = (url: string): URL | null => {
+export function parseSafeUrl(url: string): URL | null {
   try {
     return new URL(url)
   } catch (e) {
@@ -14,4 +14,6 @@ export const parseSafeUrl = (url: string): URL | null => {
   }
 }
 
-export const isEnv = (...env: Array<typeof process.env.NODE_ENV>): boolean => env.includes(process.env.NODE_ENV)
+export function isEnv(...env: Array<typeof process.env.NODE_ENV>): boolean {
+  return env.includes(process.env.NODE_ENV)
+}

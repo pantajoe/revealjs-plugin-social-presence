@@ -22,10 +22,10 @@ export function getDataLoaderContext(context: ExecutionContext): DataLoaderConte
   return nestDataLoaderContext
 }
 
-export const getDataLoader = <K = any, V = any>(
+export function getDataLoader<K = any, V = any>(
   graphqlContext: any,
   loader: Type<IBaseDataLoader<K, V>>,
-): Promise<DataLoader<K, V>> => {
+): Promise<DataLoader<K, V>> {
   const nestDataLoaderContext: DataLoaderContext = graphqlContext[NEST_LOADER_CONTEXT_KEY]
   if (!nestDataLoaderContext) throw new InternalServerErrorException('The loader is not provided')
 
@@ -40,7 +40,7 @@ export interface EnsureOrderOptions<T = unknown, U = unknown> {
 }
 
 // https://github.com/graphql/dataloader/issues/66#issuecomment-386252044
-export const ensureOrder = <T = unknown, U = unknown>(options: EnsureOrderOptions<T, U>) => {
+export function ensureOrder<T = unknown, U = unknown>(options: EnsureOrderOptions<T, U>) {
   const { docs, keys, prop, error = (key: unknown) => `Document does not exist (${key})` } = options
   if (Array.isArray(docs[0])) return docs
 

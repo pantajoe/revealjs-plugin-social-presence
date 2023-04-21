@@ -3,7 +3,7 @@ import { ConsoleLogger } from '@nestjs/common'
 
 const logger = new ConsoleLogger('MikroORM')
 
-export const ensureNoPendingMigrations = async (orm: MikroORM): Promise<boolean> => {
+export async function ensureNoPendingMigrations(orm: MikroORM): Promise<boolean> {
   const pendingMigrations = await orm.getMigrator().getPendingMigrations()
   if (pendingMigrations.length === 0) return true
 

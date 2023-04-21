@@ -14,7 +14,7 @@ export interface PolicyContext {
   params: Record<string, unknown>
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars */
 class AbstractPolicy<User, Resource> {
   findAll(user: User, ctx: PolicyContext): boolean | Promise<boolean> {
     return false
@@ -36,7 +36,7 @@ class AbstractPolicy<User, Resource> {
     return false
   }
 }
-/* eslint-enable @typescript-eslint/no-unused-vars */
+/* eslint-enable @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars */
 
 export function BasePolicy<TUser extends Constructable<any>, TResource extends AbstractInstanceType<any>>(
   User: TUser,

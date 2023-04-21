@@ -1,6 +1,7 @@
 import { Transform } from 'class-transformer'
 
-export const LowerCase = (): PropertyDecorator =>
-  Transform(({ value }) => {
+export function LowerCase(): PropertyDecorator {
+  return Transform(({ value }) => {
     return typeof value === 'string' ? value.toLowerCase() : value
   })
+}

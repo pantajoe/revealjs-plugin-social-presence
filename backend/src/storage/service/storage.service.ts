@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import { Injectable } from '@nestjs/common'
 import { InjectS3, S3 } from 'nestjs-s3'
 import { extension } from 'mime-types'

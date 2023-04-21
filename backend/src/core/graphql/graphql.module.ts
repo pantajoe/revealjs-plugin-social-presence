@@ -94,10 +94,9 @@ export class GraphqlModule implements NestModule, OnModuleDestroy {
   }
 
   async onModuleDestroy() {
-    if (!isEnv('test')) return
-
     try {
-      await this.pubSub.close()
+      await this.pubSub.getPublisher().quit()
+      await this.pubSub.getSubscriber().quit()
     } catch (e) {}
   }
 }

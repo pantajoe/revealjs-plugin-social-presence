@@ -1,4 +1,5 @@
-import { createWriteStream, readFileSync, rmSync } from 'fs'
+import { createWriteStream, readFileSync, rmSync } from 'node:fs'
+import { Buffer } from 'node:buffer'
 import { v4 as uuid } from 'uuid'
 import { startCase } from 'lodash'
 import { FileUpload } from 'graphql-upload'
@@ -48,7 +49,7 @@ export function parseUploads(
   return Promise.all(uploads.map((upload) => parseUpload(upload, validationOptions)))
 }
 
-const validateMimeType = (mimeType: string, acceptedMimeTypes: string[]) => {
+function validateMimeType(mimeType: string, acceptedMimeTypes: string[]) {
   if (!acceptedMimeTypes.length) return true
 
   return acceptedMimeTypes.some((accepted) => {

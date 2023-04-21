@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Module, OnModuleDestroy } from '@nestjs/common'
 import AdminJS, { CurrentAdmin, ResourceOptions } from 'adminjs'
 import ExpressSession from 'express-session'
 import RedisStore from 'connect-redis'
@@ -20,6 +20,8 @@ AdminJS.registerAdapter({
 const DefaultAdmin: CurrentAdmin = {
   email: 'root@example.com',
 }
+
+const redisClient = createRedisClient()
 
 @Module({
   imports: [
@@ -118,10 +120,14 @@ const DefaultAdmin: CurrentAdmin = {
           resave: true,
           saveUninitialized: true,
           secret: process.env.SECRET_KEY_BASE,
-          store: new (RedisStore(ExpressSession))({ client: createRedisClient() }),
+          store: new (RedisStore(ExpressSession))({ client: redisClient }),
         },
       }),
     }),
   ],
 })
-export class AdminModule {}
+export class AdminModule implements OnModuleDestroy {
+  async onModuleDestroy() {
+    await redisClient.quit()
+  }
+}

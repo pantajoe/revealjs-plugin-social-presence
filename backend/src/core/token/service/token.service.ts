@@ -1,4 +1,5 @@
-import crypto from 'crypto'
+import crypto from 'node:crypto'
+import { Buffer } from 'node:buffer'
 import { Injectable } from '@nestjs/common'
 import { HmacSHA256 } from 'crypto-js'
 

@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { isEnv } from '~/util'
 
 export function getFileUrl<T extends string | null | undefined>(key: T): T extends null | undefined ? null : string {
@@ -11,7 +11,7 @@ export function getFileUrl<T extends string | null | undefined>(key: T): T exten
   return url as any
 }
 
-export const getFileKey = (assetUrl: string | null | undefined) => {
+export function getFileKey(assetUrl: string | null | undefined) {
   if (!assetUrl) return ''
 
   try {

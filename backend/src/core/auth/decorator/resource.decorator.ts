@@ -16,4 +16,6 @@ export type ResourceOptions = string | string[] | ResourceResolver
 
 export const USE_RESOURCE_OPTIONS_KEY = 'use_resoure_options'
 
-export const Resource = (options: ResourceOptions) => SetMetadata(USE_RESOURCE_OPTIONS_KEY, options)
+export function Resource(options: ResourceOptions) {
+  return SetMetadata(USE_RESOURCE_OPTIONS_KEY, options)
+}

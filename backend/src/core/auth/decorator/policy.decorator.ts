@@ -1,3 +1,5 @@
 import { Injectable } from '@nestjs/common'
 
-export const Policy = (): ClassDecorator => Injectable()
+export function Policy(): ClassDecorator {
+  return Injectable()
+}
