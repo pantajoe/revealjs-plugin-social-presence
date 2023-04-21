@@ -17,11 +17,7 @@ Its features include:
 
 ## Demo
 
-A temporarily accessible demonstration is available at https://social-presence.joepantazidis.me
-Simply create an account and join the room by using this
-[link](https://social-presence.joepantazidis.me?lectureId=fdb945dd-774b-4d0e-a057-f6be7c9fd56a).
-
-**Otherwise, you can setup your own demonstration below:**
+**You can setup your own demonstration below:**
 
 You can see a demo of this plugin in action by cloning this repository and running some commands.
 You need node.js, yarn, and docker (with compose) installed.
