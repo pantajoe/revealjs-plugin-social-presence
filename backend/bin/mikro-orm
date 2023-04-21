@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+if ! command -v pwgen &> /dev/null
+then
+  echo "The binary `pwgen` could not be found. Please install it first."
+  exit 1
+fi
+
 export SECRET_KEY_BASE=${SECRET_KEY_BASE:-$(pwgen -s 32)}
 
 env DATABASE_URL=postgres://postgres:postgres@localhost:15432/social_presence_development yarn mikro-orm "$@"

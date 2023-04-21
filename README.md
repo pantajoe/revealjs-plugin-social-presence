@@ -29,6 +29,7 @@ You need node.js, yarn, and docker (with compose) installed.
 If you have [asdf](https://asdf-vm.com/) installed, you can run `asdf install` in the `backend` and in the `demo` folder to install the correct node.js versions.
 If not, install 16.15.1 for the backend folder, and 16.16.0 for the demo folder.
 Don't forget to run `npm -g install yarn` to install yarn globally.
+Additionally, the script `bin/mikro-orm` (wrapper for the CLI of the ORM) requires a global installation of `pwgen`.
 
 First, run the backend:
 
