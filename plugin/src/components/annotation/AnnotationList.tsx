@@ -38,7 +38,7 @@ export default function AnnotationList({ onSelect }: AnnotationListProps) {
 
       {slideAnnotations.length > 0 && (
         <>
-          <div className="bg-white sticky top-0 z-10 font-semibold text-gray-700 mb-4 text-sm">On this slide</div>
+          <div className="bg-white sticky top-0 z-60 font-semibold text-gray-700 mb-4 text-sm">On this slide</div>
           <div className="w-full divide-y divide-solid divide-gray-200">
             {slideAnnotations.map((annotation) => (
               <AnnotationTile key={annotation.id} annotation={annotation} onClick={onSelect} />
@@ -50,7 +50,7 @@ export default function AnnotationList({ onSelect }: AnnotationListProps) {
       {otherAnnotations.length > 0 && (
         <>
           {slideAnnotations.length > 0 && (
-            <div className="bg-white sticky top-0 z-10 font-semibold text-gray-700 my-4 text-sm">More</div>
+            <div className="bg-white sticky top-0 z-60 font-semibold text-gray-700 my-4 text-sm">More</div>
           )}
           <div className="w-full divide-y divide-solid divide-gray-200">
             {otherAnnotations.map((annotation) => (

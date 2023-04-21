@@ -23,7 +23,7 @@ export default function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
 
   return (
-    <div className={clsx('absolute z-10 top-0 left-0 py-4 pl-4 w-[360px]', view && 'h-screen max-h-screen')}>
+    <div className={clsx('absolute z-60 top-0 left-0 py-4 pl-4 w-[360px]', view && 'h-screen max-h-screen')}>
       {isLoggedIn ? (
         lecture ? (
           <>

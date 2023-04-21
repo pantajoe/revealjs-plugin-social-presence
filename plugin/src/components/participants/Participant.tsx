@@ -82,7 +82,7 @@ export default function Participant({ participant, onClick, noControls = false }
                 ref={setPopperElement}
                 {...attributes.popper}
                 participant={participant}
-                className="z-40"
+                className="z-90"
                 style={styles.popper}
               />
             </Portal>

@@ -84,7 +84,7 @@ export default function CommentBox({ comment }: CommentProps) {
               ref={setPopperElement}
               {...attributes.popper}
               participant={author}
-              className="z-40"
+              className="z-90"
               style={styles.popper}
             />
           </Portal>

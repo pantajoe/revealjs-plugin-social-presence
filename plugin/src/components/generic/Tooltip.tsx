@@ -109,7 +109,7 @@ export default function Tooltip({
           : theme === 'dark'
           ? 'bg-gray-900 text-white'
           : 'bg-white text-gray-900 border border-solid border-gray-200',
-        'inline-block z-50 font-medium rounded-md shadow-sm max-w-[12rem]',
+        'inline-block z-90 font-medium rounded-md shadow-sm max-w-[12rem]',
         {
           'py-1 px-1.5 text-xs': size === 'sm',
           'py-2 px-3 text-sm': size === 'md',

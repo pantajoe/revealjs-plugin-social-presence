@@ -85,7 +85,7 @@ export default function ColorPicker({
           as="div"
           ref={setPopperElement}
           role="listbox"
-          className="bg-white border border-gray-200 z-40 p-4 flex items-center space-x-2 rounded-md shadow-lg focus:outline-none"
+          className="bg-white border border-gray-200 z-90 p-4 flex items-center space-x-2 rounded-md shadow-lg focus:outline-none"
           style={styles.popper}
           {...attributes.popper}
         >

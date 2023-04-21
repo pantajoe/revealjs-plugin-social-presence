@@ -178,8 +178,10 @@ interface SocialPresenceConfig {
 
 #### Notes
 
-Make sure not to enable the `mousewheel` navigation as elements of this plugin
+**Reveal.js Config**: Make sure not to enable the `mousewheel` navigation as elements of this plugin
 are scrollable and this could result in unwanted navigation.
+
+**Z-Index**: make sure to have lower z-indexes than 50, so the panel is not overlapped.
 
 ## Backend
 

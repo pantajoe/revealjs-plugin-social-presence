@@ -30,7 +30,7 @@ const Modal = ({ size = 'sm', open, onClose, children, initialFocus, blank = fal
   return (
     <ModalContext.Provider value={{ open, onClose }}>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-30" initialFocus={initialFocus} onClose={onClose}>
+        <Dialog as="div" className="relative z-80" initialFocus={initialFocus} onClose={onClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -43,7 +43,7 @@ const Modal = ({ size = 'sm', open, onClose, children, initialFocus, blank = fal
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
-          <div className="fixed z-40 inset-0 overflow-y-auto">
+          <div className="fixed z-90 inset-0 overflow-y-auto">
             <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
               <Transition.Child
                 as={Fragment}

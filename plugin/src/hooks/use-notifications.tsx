@@ -79,7 +79,7 @@ export const NotificationContainer = () => {
   }, [])
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50">
+    <div className="fixed bottom-0 inset-x-0 100">
       {notification && (
         <div className="w-full pb-2">
           <Notification {...notification} />

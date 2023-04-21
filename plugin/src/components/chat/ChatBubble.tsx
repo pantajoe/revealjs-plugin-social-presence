@@ -86,7 +86,7 @@ export default function ChatBubble({ message, highlighted = false, onReplyTo, on
                   ref={setPopperElement}
                   {...attributes.popper}
                   participant={author}
-                  className="z-40"
+                  className="z-90"
                   style={styles.popper}
                 />
               </Portal>

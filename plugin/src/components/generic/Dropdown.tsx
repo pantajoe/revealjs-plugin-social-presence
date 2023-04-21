@@ -98,7 +98,7 @@ const Dropdown = ({ button, children, position = 'bottom-start', className }: Dr
                   static
                   className={clsx(
                     className,
-                    'bg-white border border-slate-100 space-y-1 rounded-md z-40 min-w-[11rem] overflow-hidden p-1 shadow-md',
+                    'bg-white border border-slate-100 space-y-1 rounded-md z-90 min-w-[11rem] overflow-hidden p-1 shadow-md',
                   )}
                 >
                   {children}
