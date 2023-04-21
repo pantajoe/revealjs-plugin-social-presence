@@ -204,6 +204,9 @@ Have a look at the [`Dockerfile`](./backend/Dockerfile) for a production-ready d
 As the GraphQL backend also exposes a native WebSocket for GraphQL realtime subscriptions and a Socket.IO WebSocket,
 you need to expose port 5000 (GraphQL) and 8080 (Socket.IO) to the outside world.
 
+For an example NginX configuration check out the [`nginx.conf`](./backend/config/api/nginx.conf) file for the API
+and the [`nginx.conf`](./backend/config/socket/nginx.conf) file for the Socket.IO WebSocket.
+
 ### Backend Configuration
 
 You need to configure the following environment variables:
