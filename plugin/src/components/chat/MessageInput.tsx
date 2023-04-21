@@ -51,10 +51,11 @@ export default forwardRef<HTMLTextAreaElement, MessageInputProps>(function Messa
   const onKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
     if (event.key === 'Enter') {
       event.stopPropagation()
-      if (event.metaKey) {
+      if (event.metaKey || event.ctrlKey) {
         event.preventDefault()
         onSend?.()
       }
+    }
   })
 
   const replyToMessage = replyTo ? truncate(replyTo.text, { length: 100 }) : undefined

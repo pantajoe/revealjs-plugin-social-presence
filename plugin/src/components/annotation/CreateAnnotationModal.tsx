@@ -43,7 +43,7 @@ export default function CreateAnnotationModal({ range, ...props }: CreateAnnotat
   const onKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useEvent((event) => {
     if (event.key === 'Enter') {
       event.stopPropagation()
-      if (event.metaKey) {
+      if (event.metaKey || event.ctrlKey) {
         event.preventDefault()
         form.current!.submit()
       }
