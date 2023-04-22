@@ -82,15 +82,15 @@ export default function RegisterForm({ onSubmit: onRegister }: RegisterFormProps
         </div>
 
         <div className="space-y-4 px-2 flex-1">
-          <Input label="Email" type="email" {...register('email', { required: true })} error={errors.email?.message} />
+          <Input label="E-mail (does not need to work, e.g., foo@example.org)" type="email" {...register('email', { required: true })} error={errors.email?.message} />
           <Input
-            label="Password"
+            label="Password (8-32 characters)"
             type="password"
             {...register('password', { required: true, minLength: 8, maxLength: 32 })}
             error={errors.password?.message}
           />
-          <Input label="Name" type="text" {...register('name', { required: true })} error={errors.name?.message} />
-          <Textarea label="Bio" rows={4} className="resize-none" {...register('bio')} />
+          <Input label="Name (required, maybe pseudonym)" type="text" {...register('name', { required: true })} error={errors.name?.message} />
+          <Textarea label="Bio (optional)" rows={4} className="resize-none" {...register('bio')} />
           <ColorPicker
             size="md"
             label="Profile color"
