@@ -38,7 +38,7 @@ export default function LoginForm({ onSubmit: onLogin }: LoginFormProps) {
 
   return (
     <form onSubmit={handleFormError(handleSubmit(onSubmit))} className="space-y-4">
-      <Input label="Email" type="email" {...register('email', { required: true })} error={errors.email?.message} />
+      <Input label="E-mail" type="email" {...register('email', { required: true })} error={errors.email?.message} />
       <Input
         label="Password"
         type="password"
